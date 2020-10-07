@@ -15,21 +15,19 @@ export default function UsersList(props) {
             aria-describedby="alert-dialog-description"
         >
             <DialogTitle id="alert-dialog-title">
-                {"Use Google's location service?"}
+                {"Are you sure you want to delete the following user?"}
             </DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    Let Google help apps determine location. This means sending
-                    anonymous location data to Google, even when no apps are
-                    running.
+                    James Harden with email harden@hr.com
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
                 <Button onClick={props.onClose} color="primary">
-                    Disagree
+                    No, Cancel
                 </Button>
                 <Button onClick={props.onClose} color="primary" autoFocus>
-                    Agree
+                    Yes
                 </Button>
             </DialogActions>
         </Dialog>

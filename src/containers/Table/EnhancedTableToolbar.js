@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import FilterListIcon from "@material-ui/icons/FilterList";
+import { TextField } from "@material-ui/core";
 
 const useToolbarStyles = makeStyles((theme) => ({
     main: {
@@ -30,6 +31,11 @@ const useToolbarStyles = makeStyles((theme) => ({
 const EnhancedTableToolbar = (props) => {
     const classes = useToolbarStyles();
 
+    const handleSearch = (e) => {
+        let target = e.target;
+        console.log(target.value);
+    };
+
     return (
         <Toolbar className={clsx(classes.main)}>
             <Typography
@@ -40,6 +46,14 @@ const EnhancedTableToolbar = (props) => {
             >
                 Users List
             </Typography>
+
+            <TextField
+                variant="outlined"
+                label="Search Employees"
+                name="search"
+                // value={value}
+                onChange={handleSearch}
+            />
 
             <Tooltip title="Filter list">
                 <IconButton aria-label="filter list">

@@ -116,6 +116,22 @@ export default function UsersList() {
                                             hover
                                             tabIndex={-1}
                                             key={row.id}
+                                            onMouseEnter={() => {
+                                                console.log(
+                                                    "show actions for " +
+                                                        row.first_name
+                                                );
+                                                row.showActions = true;
+                                                console.log(row);
+                                            }}
+                                            onMouseLeave={() => {
+                                                console.log(
+                                                    "hide actions for " +
+                                                        row.first_name
+                                                );
+                                                row.showActions = false;
+                                                console.log(row);
+                                            }}
                                         >
                                             <TableCell
                                                 component="th"
@@ -131,32 +147,42 @@ export default function UsersList() {
                                             <TableCell align="center">
                                                 {row.email}
                                             </TableCell>
-                                            <TableCell align="center">
-                                                <Link
-                                                    to={`/users/edit/${row.id}`}
-                                                >
+                                            {row.showActions ? (
+                                                <TableCell align="center">
+                                                    <Link
+                                                        to={`/users/edit/${row.id}`}
+                                                    >
+                                                        <Button
+                                                            className={
+                                                                classes.button
+                                                            }
+                                                            variant="contained"
+                                                            color="primary"
+                                                            startIcon={
+                                                                <EditIcon />
+                                                            }
+                                                        >
+                                                            Edit
+                                                        </Button>
+                                                    </Link>
+
                                                     <Button
                                                         className={
                                                             classes.button
                                                         }
                                                         variant="contained"
-                                                        color="primary"
-                                                        startIcon={<EditIcon />}
+                                                        color="secondary"
+                                                        onClick={
+                                                            handleClickOpen
+                                                        }
+                                                        startIcon={
+                                                            <DeleteIcon />
+                                                        }
                                                     >
-                                                        Edit
+                                                        Delete
                                                     </Button>
-                                                </Link>
-
-                                                <Button
-                                                    className={classes.button}
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    onClick={handleClickOpen}
-                                                    startIcon={<DeleteIcon />}
-                                                >
-                                                    Delete
-                                                </Button>
-                                            </TableCell>
+                                                </TableCell>
+                                            ) : null}
                                         </TableRow>
                                     );
                                 })}
