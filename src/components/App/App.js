@@ -1,21 +1,15 @@
 import React from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 // import UserCreation from "../../containers/UserCreation";
 // import UserEditing from "../../containers/UserEditing";
-
 import UsersList from "../../containers/UsersList";
-
+import UserCreation from "../../containers/UserCreation";
 import Header from "../Header/index";
 
-export default function App() {
+function App() {
     return (
-        <Router>
+        <>
             <Header />
             <div
                 style={{
@@ -25,7 +19,9 @@ export default function App() {
                 }}
             >
                 <Switch>
-                    <Route path="/users/create">{/* <UserCreation /> */}</Route>
+                    <Route path="/users/create">
+                        <UserCreation />
+                    </Route>
                     <Route path="/users/edit/:userId">
                         {/* <UserEditing /> */}
                     </Route>
@@ -37,6 +33,8 @@ export default function App() {
                     </Route>
                 </Switch>
             </div>
-        </Router>
+        </>
     );
 }
+
+export default App;

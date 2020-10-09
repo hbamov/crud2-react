@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
+
+import {
+    TableCell,
+    TableHead,
+    TableRow,
+    TableSortLabel,
+} from "@material-ui/core";
 
 const headCells = [
     { id: "first_name", label: "First Name" },
@@ -12,9 +15,21 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
-    const { classes, order, orderBy, onRequestSort } = props;
+    const { order, orderBy, onRequestSort } = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
+    };
+
+    const tableSortStyle = {
+        border: 0,
+        clip: "rect(0 0 0 0)",
+        height: 1,
+        margin: -1,
+        overflow: "hidden",
+        padding: 0,
+        position: "absolute",
+        top: 20,
+        width: 1,
     };
 
     return (
@@ -34,7 +49,7 @@ function EnhancedTableHead(props) {
                         >
                             {headCell.label}
                             {orderBy === headCell.id ? (
-                                <span className={classes.visuallyHidden}>
+                                <span style={tableSortStyle}>
                                     {order === "desc"
                                         ? "sorted descending"
                                         : "sorted ascending"}
@@ -52,11 +67,9 @@ function EnhancedTableHead(props) {
 }
 
 EnhancedTableHead.propTypes = {
-    classes: PropTypes.object.isRequired,
     onRequestSort: PropTypes.func.isRequired,
     order: PropTypes.oneOf(["asc", "desc"]).isRequired,
     orderBy: PropTypes.string.isRequired,
-    rowCount: PropTypes.number.isRequired,
 };
 
 export default EnhancedTableHead;
