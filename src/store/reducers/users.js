@@ -11,15 +11,23 @@ const fetchUsers = (state, action) => {
 };
 
 const createUser = (state, action) => {
-    console.log("logging input");
-
     const userToAdd = { id: Math.floor(Math.random() * 1000), ...action.user };
 
-    console.log(action.user);
-
-    console.log({ data: [...state.data, userToAdd] });
-
     return updateObject(state, { data: [...state.data, userToAdd] });
+};
+
+const editUser = (state, action) => {
+    let index = state.data.findIndex((user) => user.id === action.user.id);
+
+    let updatedUsers = [
+        ...state.data.slice(0, index),
+        {
+            ...action.user,
+        },
+        ...state.data.slice(index + 1),
+    ];
+
+    return updateObject(state, { data: updatedUsers });
 };
 
 const destroyUser = (state, action) => {
@@ -30,7 +38,6 @@ const destroyUser = (state, action) => {
 };
 
 const toggleUserActions = (state, action) => {
-    console.log(action);
     let index = state.data.findIndex((user) => user.id === action.userID);
 
     let updatedUsers = [
@@ -51,6 +58,8 @@ const reducer = (state = initialState, action) => {
             return fetchUsers(state, action);
         case actionTypes.CREATE_USER:
             return createUser(state, action);
+        case actionTypes.EDIT_USER:
+            return editUser(state, action);
         case actionTypes.DESTROY_USER:
             return destroyUser(state, action);
         case actionTypes.TOGGLE_USER_ACTIONS:

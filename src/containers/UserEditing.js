@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-function UserCreation() {
+function UserEditing() {
     const dispatch = useDispatch();
     const history = useHistory();
     const users = useSelector((state) => state.user.data);
@@ -88,7 +88,7 @@ function UserCreation() {
         event.preventDefault();
 
         if (validate()) {
-            dispatch(actions.createUser(values));
+            dispatch(actions.editUser(values));
 
             history.push("/users");
         } else {
@@ -139,7 +139,7 @@ function UserCreation() {
                             >
                                 <Controls.Button text="Back" color="default" />
                             </Link>
-                            <Controls.Button text="Add" type="submit" />
+                            <Controls.Button text="Save" type="submit" />
                         </div>
                     </Grid>
                 </Grid>
@@ -148,4 +148,4 @@ function UserCreation() {
     );
 }
 
-export default UserCreation;
+export default UserEditing;

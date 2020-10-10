@@ -38,7 +38,7 @@ function EnhancedTable(props) {
         setDialogOpen(true);
     };
 
-    const handleClose = (isConfirmed) => {
+    const HandleClose = (isConfirmed) => {
         if (isConfirmed === true) {
             destroyUser(userToBeDeleted.id);
         }
@@ -120,7 +120,7 @@ function EnhancedTable(props) {
                     />
                     <EnhancedDialog
                         open={openDialog}
-                        onClose={handleClose}
+                        onClose={HandleClose}
                         message="Are you sure you want to delete the following user?"
                         content={dialogContent}
                     />

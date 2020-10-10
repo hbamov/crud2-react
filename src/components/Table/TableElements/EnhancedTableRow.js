@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { TableCell, TableRow, Button } from "@material-ui/core";
 
 import { Delete as DeleteIcon, Edit as EditIcon } from "@material-ui/icons";
-import * as actions from "../../../store/actions/index";
-
 function EnhancedTableRow(props) {
     const [delayHandler, setDelayHandler] = useState(null);
-    const dispatch = useDispatch();
 
     const { user, handleDeleteDialogOpen, toggleUserActions } = props;
 
@@ -18,7 +14,6 @@ function EnhancedTableRow(props) {
         setDelayHandler(
             setTimeout(() => {
                 toggleUserActions(userID, true);
-                // dispatch(actions.toggleUserActions(userID, isHovered));
             }, 200)
         );
     };
@@ -26,7 +21,6 @@ function EnhancedTableRow(props) {
     const handleMouseLeave = (userID, showActions) => {
         if (showActions === true) {
             toggleUserActions(userID, false);
-            // dispatch(actions.toggleUserActions(userID, false));
         }
 
         clearTimeout(delayHandler);
@@ -76,6 +70,9 @@ function EnhancedTableRow(props) {
                             {...buttonCellProps}
                             style={buttonStyling}
                             color="primary"
+                            onClick={() =>
+                                handleMouseLeave(user.id, user.showActions)
+                            }
                             startIcon={<EditIcon />}
                         >
                             Edit

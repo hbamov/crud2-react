@@ -5,9 +5,8 @@ import { useHistory, useParams } from "react-router-dom";
 
 import { Paper, makeStyles, Grid } from "@material-ui/core";
 
-import Controls from "../components/Controls";
-import { useForm, Form } from "../components/useForm";
-import * as actions from "../store/actions/index";
+import Controls from "../Controls/index";
+import { useForm, Form } from "../useForm";
 
 const initialValues = {
     first_name: "",
@@ -24,10 +23,12 @@ const useStyles = makeStyles((theme) => ({
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-function UserCreation() {
+function CreateEditForm(props) {
     const dispatch = useDispatch();
     const history = useHistory();
     const users = useSelector((state) => state.user.data);
+
+    const { actionToDispatch } = props;
 
     let { userID } = useParams();
 
@@ -40,8 +41,10 @@ function UserCreation() {
 
         if (editedUser) {
             setValues(editedUser);
+        } else {
+            setValues(initialValues);
         }
-    }, []);
+    }, [userID]);
 
     const validate = (fieldValues = values) => {
         let temp = { ...errors };
@@ -88,7 +91,7 @@ function UserCreation() {
         event.preventDefault();
 
         if (validate()) {
-            dispatch(actions.createUser(values));
+            dispatch(actionToDispatch(values));
 
             history.push("/users");
         } else {
@@ -139,7 +142,7 @@ function UserCreation() {
                             >
                                 <Controls.Button text="Back" color="default" />
                             </Link>
-                            <Controls.Button text="Add" type="submit" />
+                            <Controls.Button text="Save" type="submit" />
                         </div>
                     </Grid>
                 </Grid>
@@ -148,4 +151,4 @@ function UserCreation() {
     );
 }
 
-export default UserCreation;
+export default CreateEditForm;

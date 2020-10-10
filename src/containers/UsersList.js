@@ -13,7 +13,11 @@ class UsersList extends Component {
 
         return (
             <Paper style={{ width: "100%" }}>
-                <EnhancedTable users={users} destroyUser={onDestroyUser} />
+                <EnhancedTable
+                    key={users}
+                    users={users}
+                    destroyUser={onDestroyUser}
+                />
             </Paper>
         );
     }

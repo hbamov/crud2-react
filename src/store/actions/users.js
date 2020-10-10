@@ -14,6 +14,13 @@ export const createUser = (user) => {
     };
 };
 
+export const editUser = (user) => {
+    return {
+        type: actionTypes.EDIT_USER,
+        user: user,
+    };
+};
+
 export const destroyUser = (userID) => {
     return {
         type: actionTypes.DESTROY_USER,

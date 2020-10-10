@@ -1,11 +1,11 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-// import UserCreation from "../../containers/UserCreation";
-// import UserEditing from "../../containers/UserEditing";
 import UsersList from "../../containers/UsersList";
-import UserCreation from "../../containers/UserCreation";
 import Header from "../Header/index";
+import CreateEditForm from "../CreateEditForm/CreateEditForm";
+
+import * as actions from "../../store/actions/index";
 
 function App() {
     return (
@@ -20,10 +20,10 @@ function App() {
             >
                 <Switch>
                     <Route path="/users/create">
-                        <UserCreation />
+                        <CreateEditForm actionToDispatch={actions.createUser} />
                     </Route>
-                    <Route path="/users/edit/:userId">
-                        {/* <UserEditing /> */}
+                    <Route path="/users/edit/:userID">
+                        <CreateEditForm actionToDispatch={actions.editUser} />
                     </Route>
                     <Route exact path="/users">
                         <UsersList />
