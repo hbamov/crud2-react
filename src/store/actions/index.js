@@ -1,5 +1,4 @@
 export {
-    fetchUsers,
     createUser,
     editUser,
     destroyUser,

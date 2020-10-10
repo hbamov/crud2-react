@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { Paper, makeStyles, Grid } from "@material-ui/core";
 
+import indexedDB from "../../helpers/indexedDB";
 import Controls from "../Controls/index";
 import { useForm, EnhancedForm } from "./EnhancedForm";
 
@@ -92,11 +94,47 @@ const EditUser = (props) => {
         event.preventDefault();
 
         if (validate()) {
-            dispatch(actionToDispatch(values));
+            if (values.hasOwnProperty("id")) {
+                indexedDB.users
+                    .where("id")
+                    .equals(values.id)
+                    .toArray()
+                    .then((queryResult) => {
+                        indexedDB.users
+                            .update(values.id, {
+                                first_name: values.first_name,
+                                last_name: values.last_name,
+                                email: values.email,
+                            })
+                            .then(function (updated) {
+                                if (updated)
+                                    console.log(
+                                        "User was updated successfuly in IndexedDB"
+                                    );
+                                else
+                                    console.log(
+                                        "User update failed in IndexedDB"
+                                    );
+                            });
+                    });
+
+                dispatch(actionToDispatch(values));
+            } else {
+                const newUser = {
+                    id: Math.floor(Math.random() * 6) + 150,
+                    ...values,
+                };
+
+                setValues(newUser);
+
+                indexedDB.users.add({
+                    ...values,
+                });
+
+                dispatch(actionToDispatch(newUser));
+            }
 
             history.push("/users");
-        } else {
-            console.log("FAIL");
         }
     };
 
@@ -161,6 +199,10 @@ const EditUser = (props) => {
             </Paper>
         </Grid>
     );
+};
+
+EditUser.propTypes = {
+    actionToDispatch: PropTypes.func.isRequired,
 };
 
 export default EditUser;

@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { TextField } from "@material-ui/core";
 
 const Input = (props) => {
@@ -14,6 +16,14 @@ const Input = (props) => {
             {...(error && { error: true, helperText: error })}
         />
     );
+};
+
+Input.propTypes = {
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
 };
 
 export default Input;

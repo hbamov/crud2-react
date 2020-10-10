@@ -1,17 +1,13 @@
 import * as actionTypes from "../actions/actionTypes";
-import { updateObject } from "../utility";
+import { updateObject } from "../../helpers/utility";
 import data from "../../helpers/data.json";
 
 const initialState = {
     data: data,
 };
 
-const fetchUsers = (state, action) => {
-    return updateObject(state, { purchased: "edited" });
-};
-
 const createUser = (state, action) => {
-    const userToAdd = { id: Math.floor(Math.random() * 1000), ...action.user };
+    const userToAdd = { ...action.user };
 
     return updateObject(state, { data: [...state.data, userToAdd] });
 };
@@ -54,8 +50,6 @@ const toggleUserActions = (state, action) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.FETCH_USERS:
-            return fetchUsers(state, action);
         case actionTypes.CREATE_USER:
             return createUser(state, action);
         case actionTypes.EDIT_USER:

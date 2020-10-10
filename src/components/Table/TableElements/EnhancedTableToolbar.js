@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import { Toolbar, Typography, TextField } from "@material-ui/core";
 
 const EnhancedTableToolbar = (props) => {
+    const { filterUsers } = props;
+
     const handleSearch = (event) => {
         let filterValue = event.target.value;
-
-        const { filterUsers } = props;
 
         filterUsers(filterValue);
     };
@@ -32,7 +32,7 @@ const EnhancedTableToolbar = (props) => {
             />
         </Toolbar>
     );
-}
+};
 
 EnhancedTableToolbar.propTypes = {
     filterUsers: PropTypes.func.isRequired,

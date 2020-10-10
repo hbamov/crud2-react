@@ -1,5 +1,8 @@
 import React from "react";
 import clsx from "clsx";
+import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
+
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -17,7 +20,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import GroupIcon from "@material-ui/icons/Group";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
-import { NavLink } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -90,6 +92,8 @@ const SideDrawer = (props) => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const { content } = props;
 
     return (
         <div className={classes.root}>
@@ -171,10 +175,14 @@ const SideDrawer = (props) => {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                {props.content}
+                {content}
             </main>
         </div>
     );
+};
+
+SideDrawer.propTypes = {
+    content: PropTypes.node.isRequired,
 };
 
 export default SideDrawer;

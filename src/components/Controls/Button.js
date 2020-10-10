@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Button as MuiButton, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +28,14 @@ const Button = (props) => {
             {text}
         </MuiButton>
     );
+};
+
+Button.propTypes = {
+    text: PropTypes.string.isRequired,
+    size: PropTypes.string,
+    color: PropTypes.string,
+    variant: PropTypes.string,
+    onClick: PropTypes.func,
 };
 
 export default Button;

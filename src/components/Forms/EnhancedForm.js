@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 import { makeStyles } from "@material-ui/core";
 
 export const useForm = (initialValues, validateOnChange = false, validate) => {
@@ -46,4 +48,8 @@ export const EnhancedForm = (props) => {
             {props.children}
         </form>
     );
+};
+
+EnhancedForm.propTypes = {
+    children: PropTypes.node.isRequired,
 };

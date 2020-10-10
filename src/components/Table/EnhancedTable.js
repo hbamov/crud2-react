@@ -8,8 +8,9 @@ import {
     TablePagination,
 } from "@material-ui/core";
 
-import * as sortingHelpers from "../../helpers/Sorting";
+import * as sortingHelpers from "../../helpers/sorting";
 
+import indexedDB from "../../helpers/indexedDB";
 import EnhancedDialog from "../Controls/Dialog";
 import EnhancedTableHead from "./TableElements/EnhancedTableHead";
 import EnhancedTableToolbar from "./TableElements/EnhancedTableToolbar";
@@ -34,13 +35,14 @@ const EnhancedTable = (props) => {
         });
 
         setUserToBeDeleted(clickedUser);
-
         setDialogOpen(true);
     };
 
-    const HandleClose = (isConfirmed) => {
+    const handleClose = (isConfirmed) => {
         if (isConfirmed === true) {
             destroyUser(userToBeDeleted.id);
+
+            indexedDB.users.delete(userToBeDeleted.id);
         }
 
         setUserToBeDeleted({});
@@ -95,14 +97,14 @@ const EnhancedTable = (props) => {
         setUsersToDisplay(updatedUsers);
     };
 
-    let currentPageData = sortingHelpers
+    const currentPageData = sortingHelpers
         .stableSort(
             usersToDisplay,
             sortingHelpers.getComparator(order, orderBy)
         )
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
-    let dialogContent = `User ${userToBeDeleted.first_name} ${userToBeDeleted.last_name} with email ${userToBeDeleted.email}.`;
+    const dialogContent = `User ${userToBeDeleted.first_name} ${userToBeDeleted.last_name} with email ${userToBeDeleted.email}.`;
 
     return (
         <>
@@ -120,7 +122,7 @@ const EnhancedTable = (props) => {
                     />
                     <EnhancedDialog
                         open={openDialog}
-                        onClose={HandleClose}
+                        onClose={handleClose}
                         message="Are you sure you want to delete the following user?"
                         content={dialogContent}
                     />

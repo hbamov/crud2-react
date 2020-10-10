@@ -11,7 +11,7 @@ const EnhancedTableRow = (props) => {
 
     const { user, handleDeleteDialogOpen, toggleUserActions } = props;
 
-    const handleMouseEnter = (userID, isHovered) => {
+    const handleMouseEnter = (userID) => {
         setDelayHandler(
             setTimeout(() => {
                 toggleUserActions(userID, true);
@@ -100,6 +100,7 @@ const EnhancedTableRow = (props) => {
 EnhancedTableRow.propTypes = {
     user: PropTypes.object,
     handleDeleteDialogOpen: PropTypes.func.isRequired,
+    toggleUserActions: PropTypes.func.isRequired,
 };
 
 export default EnhancedTableRow;

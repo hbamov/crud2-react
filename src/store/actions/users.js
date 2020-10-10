@@ -1,11 +1,4 @@
 import * as actionTypes from "./actionTypes";
-// import axios from "../../axios-orders";
-
-export const fetchUsers = () => {
-    return {
-        type: actionTypes.FETCH_USERS,
-    };
-};
 
 export const createUser = (user) => {
     return {
