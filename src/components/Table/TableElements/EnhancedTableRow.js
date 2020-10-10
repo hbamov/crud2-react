@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { TableCell, TableRow, Button } from "@material-ui/core";
 
 import { Delete as DeleteIcon, Edit as EditIcon } from "@material-ui/icons";
-function EnhancedTableRow(props) {
+
+const EnhancedTableRow = (props) => {
     const [delayHandler, setDelayHandler] = useState(null);
 
     const { user, handleDeleteDialogOpen, toggleUserActions } = props;
@@ -94,7 +95,7 @@ function EnhancedTableRow(props) {
             )}
         </TableRow>
     );
-}
+};
 
 EnhancedTableRow.propTypes = {
     user: PropTypes.object,

@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Button(props) {
+const Button = (props) => {
     const { text, size, color, variant, onClick, ...other } = props;
     const classes = useStyles();
 
@@ -26,6 +26,6 @@ function Button(props) {
             {text}
         </MuiButton>
     );
-}
+};
 
 export default Button;

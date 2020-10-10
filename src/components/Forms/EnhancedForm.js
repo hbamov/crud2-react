@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
 
-export function useForm(initialValues, validateOnChange = false, validate) {
+export const useForm = (initialValues, validateOnChange = false, validate) => {
     const [values, setValues] = useState(initialValues);
     const [errors, setErrors] = useState({});
 
@@ -27,7 +27,7 @@ export function useForm(initialValues, validateOnChange = false, validate) {
         handleInputChange,
         resetForm,
     };
-}
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export function Form(props) {
+export const EnhancedForm = (props) => {
     const classes = useStyles();
     const { children, ...other } = props;
     return (
@@ -46,4 +46,4 @@ export function Form(props) {
             {props.children}
         </form>
     );
-}
+};

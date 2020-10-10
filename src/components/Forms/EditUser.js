@@ -6,7 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Paper, makeStyles, Grid } from "@material-ui/core";
 
 import Controls from "../Controls/index";
-import { useForm, Form } from "../useForm";
+import { useForm, EnhancedForm } from "./EnhancedForm";
 
 const initialValues = {
     first_name: "",
@@ -16,14 +16,15 @@ const initialValues = {
 
 const useStyles = makeStyles((theme) => ({
     pageContent: {
-        margin: theme.spacing(5),
+        margin: theme.spacing(3),
         padding: theme.spacing(3),
+        width: "30%",
     },
 }));
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-function CreateEditForm(props) {
+const EditUser = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const users = useSelector((state) => state.user.data);
@@ -102,53 +103,64 @@ function CreateEditForm(props) {
     const classes = useStyles();
 
     return (
-        <Paper className={classes.pageContent}>
-            <Form onSubmit={handleSubmit}>
-                <Grid
-                    container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justify="center"
-                >
-                    <Grid item xs={6}>
-                        <Controls.Input
-                            name="first_name"
-                            label="First Name"
-                            value={values.first_name}
-                            onChange={handleInputChange}
-                            error={errors.first_name}
-                        />
-                        <Controls.Input
-                            name="last_name"
-                            label="Last Name"
-                            value={values.last_name}
-                            onChange={handleInputChange}
-                            error={errors.last_name}
-                        />
-                        <Controls.Input
-                            name="email"
-                            label="Email"
-                            value={values.email}
-                            onChange={handleInputChange}
-                            error={errors.email}
-                        />
+        <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+        >
+            <Paper className={classes.pageContent}>
+                <EnhancedForm onSubmit={handleSubmit}>
+                    <Grid
+                        container
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justify="center"
+                    >
+                        <Grid item xs={12}>
+                            <Controls.Input
+                                name="first_name"
+                                label="First Name"
+                                value={values.first_name}
+                                onChange={handleInputChange}
+                                error={errors.first_name}
+                            />
+                            <Controls.Input
+                                name="last_name"
+                                label="Last Name"
+                                value={values.last_name}
+                                onChange={handleInputChange}
+                                error={errors.last_name}
+                            />
+                            <Controls.Input
+                                name="email"
+                                label="Email"
+                                value={values.email}
+                                onChange={handleInputChange}
+                                error={errors.email}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <div>
+                                <Link
+                                    to="/users"
+                                    style={{ textDecoration: "none" }}
+                                >
+                                    <Controls.Button
+                                        text="Back"
+                                        color="default"
+                                    />
+                                </Link>
+                                <Controls.Button text="Save" type="submit" />
+                            </div>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                        <div>
-                            <Link
-                                to="/users"
-                                style={{ textDecoration: "none" }}
-                            >
-                                <Controls.Button text="Back" color="default" />
-                            </Link>
-                            <Controls.Button text="Save" type="submit" />
-                        </div>
-                    </Grid>
-                </Grid>
-            </Form>
-        </Paper>
+                </EnhancedForm>
+            </Paper>
+        </Grid>
     );
-}
+};
 
-export default CreateEditForm;
+export default EditUser;

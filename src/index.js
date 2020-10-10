@@ -10,6 +10,8 @@ import App from "./components/App/App";
 import * as serviceWorker from "./serviceWorker";
 import userReducer from "./store/reducers/users";
 
+import PersistentDrawerLeft from "./components/SideDrawer/SideDrawer";
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
@@ -24,7 +26,7 @@ const store = createStore(
 const app = (
     <Provider store={store}>
         <BrowserRouter>
-            <App />
+            <PersistentDrawerLeft content={<App />} />
         </BrowserRouter>
     </Provider>
 );

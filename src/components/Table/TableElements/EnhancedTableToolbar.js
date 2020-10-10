@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { Toolbar, Typography, TextField } from "@material-ui/core";
 
-function EnhancedTableToolbar(props) {
+const EnhancedTableToolbar = (props) => {
     const handleSearch = (event) => {
         let filterValue = event.target.value;
 

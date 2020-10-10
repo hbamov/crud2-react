@@ -14,7 +14,7 @@ const headCells = [
     { id: "email", label: "Email" },
 ];
 
-function EnhancedTableHead(props) {
+const EnhancedTableHead = (props) => {
     const { order, orderBy, onRequestSort } = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
@@ -64,7 +64,7 @@ function EnhancedTableHead(props) {
             </TableRow>
         </TableHead>
     );
-}
+};
 
 EnhancedTableHead.propTypes = {
     onRequestSort: PropTypes.func.isRequired,

@@ -15,7 +15,7 @@ import EnhancedTableHead from "./TableElements/EnhancedTableHead";
 import EnhancedTableToolbar from "./TableElements/EnhancedTableToolbar";
 import EnhancedTableRow from "./TableElements/EnhancedTableRow";
 
-function EnhancedTable(props) {
+const EnhancedTable = (props) => {
     const { users, destroyUser } = props;
 
     const [order, setOrder] = useState("asc");
@@ -151,7 +151,7 @@ function EnhancedTable(props) {
             />
         </>
     );
-}
+};
 
 EnhancedTable.propTypes = {
     users: PropTypes.array.isRequired,

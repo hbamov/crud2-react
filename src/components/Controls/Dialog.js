@@ -10,7 +10,7 @@ import {
     DialogContentText,
 } from "@material-ui/core";
 
-function enhancedDialog(props) {
+const enhancedDialog = (props) => {
     const { open, onClose, message, content } = props;
 
     return (
@@ -36,7 +36,7 @@ function enhancedDialog(props) {
             </DialogActions>
         </Dialog>
     );
-}
+};
 
 enhancedDialog.propTypes = {
     open: PropTypes.bool.isRequired,
