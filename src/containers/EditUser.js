@@ -6,9 +6,9 @@ import PropTypes from "prop-types";
 
 import { Paper, makeStyles, Grid } from "@material-ui/core";
 
-import indexedDB from "../../helpers/indexedDB";
-import Controls from "../Controls/index";
-import { useForm, EnhancedForm } from "./EnhancedForm";
+import indexedDB from "../helpers/indexedDB";
+import Controls from "../components/Controls/index";
+import { useForm, EnhancedForm } from "../components/Controls/EnhancedForm";
 
 const initialValues = {
     first_name: "",

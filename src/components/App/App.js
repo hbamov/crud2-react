@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import UsersList from "../../containers/UsersList";
-import EditUser from "../Forms/EditUser";
+import EditUser from "../../containers/EditUser";
 
 import * as actions from "../../store/actions/index";
 
