@@ -8,7 +8,7 @@ import {
     TablePagination,
 } from "@material-ui/core";
 
-import * as sortingHelpers from "../../helpers/sorting";
+import * as sortingHelpers from "../../helpers/Sorting";
 
 import indexedDB from "../../helpers/indexedDB";
 import EnhancedDialog from "../Controls/Dialog";
